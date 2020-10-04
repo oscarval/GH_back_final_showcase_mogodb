@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const Credentials = require("../../config/credentials");
+const Credentials = require("../config/credentials");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -10,15 +10,15 @@ const UserSchema = new mongoose.Schema(
       default: "name",
       required: false,
     },
-    lastname : {
+    lastname: {
       type: String,
       trim: true,
       default: "last_name",
       required: false,
     },
-    phone : {
-      type : Number,
-      required : false,
+    phone: {
+      type: Number,
+      required: false,
     },
     email: {
       type: String,
@@ -53,7 +53,9 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.methods.generateAuthToken = function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id }, Credentials.key);
+  const token = jwt.sign({ _id: user._id }, Credentials.key, {
+    expiresIn: 1440,
+  });
 
   this.update({
     $push: {

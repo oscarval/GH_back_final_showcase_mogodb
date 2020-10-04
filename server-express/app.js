@@ -4,6 +4,7 @@ var logger = require("morgan");
 
 // Routes
 var usersRouter = require("./routes/users");
+var productsRouter = require("./routes/products");
 
 // Moongose
 require("./config/mongoose");
@@ -18,5 +19,6 @@ app.use(cookieParser());
 
 // Set Routes
 app.use("/users", usersRouter);
+app.use("/products", productsRouter);
 
 module.exports = app;
