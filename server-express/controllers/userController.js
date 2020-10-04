@@ -4,8 +4,8 @@ const Utils = require("../utils");
 const UserController = {
   async register(req, res) {
     try {
-      await User.create(req.body);
-      res.send(Utils.responseOK(null, "Register successful"));
+      const user = await User.create(req.body);
+      res.send(Utils.responseOK(user, "Register successful"));
     } catch (error) {
       console.error(error);
       res.status(500).send(Utils.responseKO(error.message));

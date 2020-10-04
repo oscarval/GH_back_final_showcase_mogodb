@@ -2,33 +2,44 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const Credentials = require("../../config/credentials");
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    default: "user_name",
-    required: false,
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      trim: true,
+      default: "user_name",
+      required: false,
+    },
+    email: {
+      type: String,
+      trim: true,
+      required: [true, "Email is required"],
+      unique: true,
+    },
+    password: {
+      type: String,
+      trim: true,
+      required: [true, "Password is required"],
+      minlength: 6,
+    },
+    role: {
+      type: String,
+      trim: true,
+      default: "user",
+      enum: ["admin", "user", "sudo"],
+    },
+    tokens: [String],
   },
-  email: {
-    type: String,
-    trim: true,
-    required: [true, "Email is required"],
-    unique: true,
-  },
-  password: {
-    type: String,
-    trim: true,
-    required: [true, "Password is required"],
-    minlength: 6,
-  },
-  role: {
-    type: String,
-    trim: true,
-    default: "user",
-    enum: ["admin", "user", "sudo"],
-  },
-  tokens: [String],
-});
+  {
+    toJSON: {
+      transform: function (doc, ret) {
+        delete ret.password;
+        delete ret.tokens;
+        return ret;
+      },
+    },
+  }
+);
 
 UserSchema.methods.generateAuthToken = function () {
   const user = this;
