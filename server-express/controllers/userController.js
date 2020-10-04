@@ -14,8 +14,8 @@ const UserController = {
   async login(req, res) {
     try {
       const user = await User.findOne({
-        email: req.params.email,
-        password: req.params.password,
+        email: req.body.email,
+        password: req.body.password,
       });
       if (!user) {
         res.send(Utils.responseOK(false, "Email or Password incorrect"));
@@ -23,7 +23,7 @@ const UserController = {
       }
       const token = await user.generateAuthToken();
       const resp = Utils.responseOK(true);
-      res.send({ resp, token: null });
+      res.send({ resp, token: token });
     } catch (error) {
       console.error(error);
       res.status(500).send(Utils.responseKO("Error to login"));

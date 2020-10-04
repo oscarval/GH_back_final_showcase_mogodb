@@ -7,8 +7,18 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
-      default: "user_name",
+      default: "name",
       required: false,
+    },
+    lastname : {
+      type: String,
+      trim: true,
+      default: "last_name",
+      required: false,
+    },
+    phone : {
+      type : Number,
+      required : false,
     },
     email: {
       type: String,
