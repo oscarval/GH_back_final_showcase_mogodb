@@ -1,4 +1,4 @@
-const User = require("../models/user/user");
+const User = require("../models/user");
 const Utils = require("../utils");
 
 const UserController = {
@@ -42,7 +42,7 @@ const UserController = {
       res.send(resp);
     } catch (error) {
       console.error(error);
-      res.status(500).send(Utils.responseKO("Error to login"));
+      res.status(500).send(Utils.responseKO());
     }
   },
 };
