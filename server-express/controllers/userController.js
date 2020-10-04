@@ -23,7 +23,7 @@ const UserController = {
       }
       const token = await user.generateAuthToken();
       const resp = Utils.responseOK(true);
-      res.send({ resp, token: token });
+      res.send({ ...resp, token: token });
     } catch (error) {
       console.error(error);
       res.status(500).send(Utils.responseKO("Error to login"));
@@ -31,7 +31,7 @@ const UserController = {
   },
   async getById(req, res) {
     try {
-      const user = User.findById(req.params.id);
+      const user = await User.findById(req.params.id);
       if (!user) {
         res.status(204);
         res.send(
@@ -39,7 +39,7 @@ const UserController = {
         );
       }
       const resp = Utils.responseOK(user);
-      res.send({ resp });
+      res.send(resp);
     } catch (error) {
       console.error(error);
       res.status(500).send(Utils.responseKO("Error to login"));
