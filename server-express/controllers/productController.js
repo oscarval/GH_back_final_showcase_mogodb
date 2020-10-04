@@ -52,6 +52,36 @@ const ProductController = {
       res.status(500).send(Utils.responseKO());
     }
   },
+  async updateProduct(req, res) {
+    try {
+      const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      if (!product) {
+        res.status(500);
+        res.send(Utils.responseKO(null, "Error to update product"));
+      }
+      const resp = Utils.responseOK(product);
+      res.send(resp);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(Utils.responseKO());
+    }
+  },
+  async deleteProduct(req, res) {
+    try {
+      const product = await Product.findByIdAndDelete(req.params.id);
+      if (!product) {
+        res.status(500);
+        res.send(Utils.responseKO(null, "Error to delete product"));
+      }
+      const resp = Utils.responseOK(product);
+      res.send(resp);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(Utils.responseKO());
+    }
+  },
 };
 
 module.exports = ProductController;
