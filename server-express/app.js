@@ -4,16 +4,10 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 // Routes
-var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 // Moongose
-var mongoose = require("./config/mongoose");
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  // we're connected!
-});
+require("./config/mongoose");
 
 // Express
 var app = express();
