@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Utils = require("../utils");
+const bcrypt = require("bcryptjs");
 
 const UserController = {
   async register(req, res) {
@@ -15,11 +16,9 @@ const UserController = {
     try {
       const user = await User.findOne({
         email: req.body.email,
-        password: req.body.password,
       });
-      if (!user) {
+      if (!user || (user && !user.validatePassword(req.body.password))) {
         res.send(Utils.responseOK(false, "Email or Password incorrect"));
-        return;
       }
       const token = await user.generateAuthToken();
       const resp = Utils.responseOK(true);
