@@ -5,7 +5,7 @@ const ShoppingCartController = {
   async getAllProductsCart(req, res) {
     const userid = req.decoded._id;
     const cart = await ShoppingCart.findOne({ userid: userid });
-    res.send(Utils.responseOK(cart, "The shopping cart it's empty"));
+    res.send(Utils.responseOK(cart));
   },
   async updateCart(req, res) {
     try {
