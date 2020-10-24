@@ -11,10 +11,18 @@ Please, run `npm i` to install all necessaries dependencies.
 
 Also, cd into /server-express and run `npm i` to install all necessaries dependencies.
 
-You need have installation MongoDB in your computer in local and configure the port 27017 for to lacuh MongoDB
+For run MongoDB, you have two options:
+
+1.- You could have a installation of MongoDB in local and configure the port 27018
 (See de file `./server-express/config/mongoose.js`)
 
-When you launch server-express and the app and they are ok, you need register to access to showcase.
+OR
+
+2.- You could have a Docker in local and exceute the next commands
+`cd server-express`
+`docker-compose -f docker-compose.yml up` 
+
+When you launch server-express, the app and they are ok, you need register to access to showcase.
 
 ## Available Scripts
 

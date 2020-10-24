@@ -14,10 +14,15 @@ const ApiRequest = {
       "Content-Type": "application/json",
     },
   },
+  Clear: (action) => {
+    return async (dispatch) => {
+      clearAction(action, dispatch);
+    };
+  },
   Users: {
     Register: (userData) => {
       return async (dispatch) => {
-        setLoading(Config.ApiRequest.actionsTypes.REGISTER, dispatch);
+        setLoading(dispatch);
         try {
           const apiResponse = await axios
             .post(
@@ -43,7 +48,7 @@ const ApiRequest = {
     },
     Login: (userData) => {
       return async (dispatch) => {
-        setLoading(Config.ApiRequest.actionsTypes.LOGIN, dispatch);
+        setLoading(dispatch);
         try {
           const apiResponse = await axios
             .post(`${Config.ApiRequest.request.baseURL}/users/login`, userData)
@@ -72,7 +77,7 @@ const ApiRequest = {
   Products: {
     GetAll: () => {
       return async (dispatch) => {
-        setLoading(Config.ApiRequest.actionsTypes.GET_ALL_PRODUCTS, dispatch);
+        setLoading(dispatch);
         try {
           const apiResponse = await axios
             .get(`${Config.ApiRequest.request.baseURL}/products`, getOptions())
@@ -97,7 +102,7 @@ const ApiRequest = {
   Cart: {
     GetAll: () => {
       return async (dispatch) => {
-        //setLoading(Config.ApiRequest.actionsTypes.GET_ALL_CART, dispatch);
+        setLoading(dispatch);
         try {
           const apiResponse = await axios
             .get(`${Config.ApiRequest.request.baseURL}/cart`, getOptions())
@@ -120,7 +125,7 @@ const ApiRequest = {
     },
     UpdateCart: (cartData) => {
       return async (dispatch) => {
-        // setLoading(Config.ApiRequest.actionsTypes.UPDATE_CART, dispatch);
+        setLoading(dispatch);
         try {
           const apiResponse = await axios
             .put(
@@ -160,11 +165,18 @@ const getOptions = () => {
   return ApiRequest.options;
 };
 
-const setLoading = (action, dispatch) => {
+const setLoading = (dispatch) => {
+  dispatch({
+    type: Config.ApiRequest.actionsTypes.LOADING,
+    payload: null,
+  });
+};
+
+const clearAction = (action, dispatch) => {
   dispatch({
     type: action,
     payload: {
-      response: null,
+      response: -1,
     },
   });
 };
