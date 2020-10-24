@@ -1,0 +1,11 @@
+@import "../../assets/styles/palette.scss";
+
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $colorT6;
+  .register{
+      margin-top: 2em;
+  }
+}
