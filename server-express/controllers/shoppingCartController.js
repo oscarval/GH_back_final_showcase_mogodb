@@ -10,7 +10,7 @@ const ShoppingCartController = {
   async updateCart(req, res) {
     try {
       const userid = req.decoded._id;
-      const cart = await ShoppingCart.findOneAndUpdate(
+      let cart = await ShoppingCart.findOneAndUpdate(
         { userid: userid },
         req.body,
         {
@@ -19,11 +19,12 @@ const ShoppingCartController = {
       );
       if (!cart) {
         const cartNew = await ShoppingCart.create(req.body);
+        cart = cartNew;
         if (!cartNew) {
           res.status(500).send(Utils.responseKO());
         }
       }
-      res.send(true);
+      res.send(Utils.responseOK(cart));
     } catch (error) {
       console.error(error);
       res.status(500).send(Utils.responseKO());

@@ -66,7 +66,7 @@ UserSchema.methods.validatePassword = function (password) {
 UserSchema.methods.generateAuthToken = function () {
   const user = this;
   const token = jwt.sign({ _id: user._id }, Credentials.key, {
-    expiresIn: 1440,
+    expiresIn: "24h",
   });
 
   this.update({

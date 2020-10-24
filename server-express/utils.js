@@ -12,6 +12,12 @@ const Utils = {
       message: error ? error : "There was a problem",
     };
   },
+  responseKOToken(error) {
+    return {
+      code: -500,
+      message: error ? error : "Token invalid",
+    };
+  },
 };
 
 module.exports = Utils;

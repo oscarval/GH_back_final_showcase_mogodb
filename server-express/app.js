@@ -1,6 +1,7 @@
 var express = require("express");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cors = require('cors');
 
 // Routes
 var usersRouter = require("./routes/users");
@@ -12,6 +13,8 @@ require("./config/mongoose");
 
 // Express
 var app = express();
+// enabled cors
+app.use(cors())
 
 app.use(logger("dev"));
 app.use(express.json());

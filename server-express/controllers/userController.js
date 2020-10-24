@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const Utils = require("../utils");
-const bcrypt = require("bcryptjs");
 
 const UserController = {
   async register(req, res) {
@@ -9,7 +8,7 @@ const UserController = {
       res.send(Utils.responseOK(user, "Register successful"));
     } catch (error) {
       console.error(error);
-      res.status(500).send(Utils.responseKO(error.message));
+      res.send(Utils.responseKO(error.message));
     }
   },
   async login(req, res) {
@@ -18,14 +17,15 @@ const UserController = {
         email: req.body.email,
       });
       if (!user || (user && !user.validatePassword(req.body.password))) {
-        res.send(Utils.responseOK(false, "Email or Password incorrect"));
+        res.send(Utils.responseKO("Email or Password incorrect"));
+        return;
       }
       const token = await user.generateAuthToken();
-      const resp = Utils.responseOK(true);
+      const resp = Utils.responseOK(user);
       res.send({ ...resp, token: token });
     } catch (error) {
       console.error(error);
-      res.status(500).send(Utils.responseKO("Error to login"));
+      res.send(Utils.responseKO(error.message));
     }
   },
   async getById(req, res) {
@@ -41,7 +41,7 @@ const UserController = {
       res.send(resp);
     } catch (error) {
       console.error(error);
-      res.status(500).send(Utils.responseKO());
+      res.send(Utils.responseKO());
     }
   },
 };
