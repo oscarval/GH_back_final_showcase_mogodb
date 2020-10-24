@@ -12,26 +12,26 @@ const reducer = (state = initialErrorsState, { type, payload }) => {
       return {
         ...state,
         Cart: payload.response,
-        loading: payload.response ? false : true,
+        loading: payload.response || payload.response === -1 ? false : true,
       };
     case Config.ApiRequest.actionsTypes.GET_ALL_CART:
       return {
         ...state,
         Cart: payload.response,
-        loading: payload.response ? false : true,
+        loading: payload.response || payload.response === -1 ? false : true,
       };
 
     case Config.ApiRequest.actionsTypes.REGISTER:
       return {
         ...state,
         Register: payload.response,
-        loading: payload.response ? false : true,
+        loading: payload.response || payload.response === -1 ? false : true,
       };
     case Config.ApiRequest.actionsTypes.LOGIN:
       return {
         ...state,
         Login: payload.response,
-        loading: payload.response ? false : true,
+        loading: payload.response || payload.response === -1 ? false : true,
       };
     case Config.ApiRequest.actionsTypes.SET_TOKEN:
       return {
@@ -43,7 +43,12 @@ const reducer = (state = initialErrorsState, { type, payload }) => {
       return {
         ...state,
         Products: payload.response,
-        loading: payload.response ? false : true,
+        loading: payload.response || payload.response === -1 ? false : true,
+      };
+    case Config.ApiRequest.actionsTypes.LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

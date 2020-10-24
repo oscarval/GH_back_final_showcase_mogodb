@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import ApiRequest from "../../services/api/Api-request";
 import "./Login.scss";
+import Config from "../../services/config/config";
 // bootstrap
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,13 +14,6 @@ const Login = (props) => {
       setValues({ ...values, email: props.state.Register.data.email });
     }
   }, []);
-
-  // navigate to home when login ok
-  useEffect(() => {
-    if (props.state.Login && props.state.Login.code === 0) {
-      props.history.push("/home");
-    }
-  });
 
   const [validated, setValidated] = useState(false);
   // inputs login form
@@ -33,14 +27,24 @@ const Login = (props) => {
     password: props.state.password ? props.state.password : "",
   });
 
+  // navigate to home when login ok
+  useEffect(() => {
+    if (props.state.Login && props.state.Login !== -1) {
+      if (props.state.Login.code === 0) {
+        props.history.push("/home");
+      } else {
+        setValidated(false);
+        alert(props.state.Login.message);
+        props.clear();
+      }
+    }
+  });
+
   const sendLogin = (event) => {
     event.preventDefault();
     event.stopPropagation();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      setValidated(false);
-    } else {
-      setValidated(true);
+    if (form.checkValidity() === true) {
       props.login(values);
     }
   };
@@ -104,6 +108,9 @@ const mapStateToProps = (state) => ({ state: state });
 const mapDispacthToProps = (dispatch) => ({
   login: (userData) => {
     ApiRequest.Users.Login(userData)(dispatch);
+  },
+  clear: () => {
+    ApiRequest.Clear(Config.ApiRequest.actionsTypes.LOGIN)(dispatch);
   },
 });
 
