@@ -9,6 +9,13 @@ Also, I will use, in back, server express to create API with CRUD connect its wi
 
 Please, run `npm i` to install all necessaries dependencies.
 
+Also, cd into /server-express and run `npm i` to install all necessaries dependencies.
+
+You need have installation MongoDB in your computer in local and configure the port 27017 for to lacuh MongoDB
+(See de file `./server-express/config/mongoose.js`)
+
+When you launch server-express and the app and they are ok, you need register to access to showcase.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -16,7 +23,7 @@ In the project directory, you can run:
 ### `npm run dev`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:8080](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits, only on sheetstyle files or javascript files.
 If you do some modification in html, please reload the browser page

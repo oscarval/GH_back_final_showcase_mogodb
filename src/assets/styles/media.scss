@@ -20,6 +20,10 @@
       }
     }
   }
+  .Home{
+    display: flex;
+    flex-direction: column;
+  }
 }
 /* for small screen */
 @media (min-width: 320px) and (max-width: 700px) {
@@ -41,11 +45,20 @@
       }
     }
   }
+  .Home{
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* for large screens*/
 @media (min-width: 700px) {
   .main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .Home{
     display: flex;
     flex-direction: row;
     justify-content: space-around;

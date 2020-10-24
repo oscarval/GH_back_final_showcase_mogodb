@@ -2,14 +2,11 @@
   "name": "GH_backend_final_showcase_mongodb",
   "version": "1.0.0",
   "description": "GeeksHubs Backend Practice Final - Dynamic product showcase with CRUD connect it to mongodb",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
-    "build:dev": "npm run clean && webpack --mode development",
-    "build": "npm run clean && BABEL_ENV=production webpack --mode production",
-    "clean": "rm -R -f dist"
-  },
+  "private": true,
+  "homepage": "https://github.com/oscarval/GH_back_final_showcase_mogodb#readme",
+  "keywords": [],
+  "author": "Alexis Valdez",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oscarval/GH_back_final_showcase_mogodb"
@@ -17,30 +14,43 @@
   "bugs": {
     "url": "https://github.com/oscarval/GH_back_final_showcase_mogodb/issues"
   },
-  "homepage": "https://github.com/oscarval/GH_back_final_showcase_mogodb#readme",
-  "keywords": [],
-  "author": "Alexis Valdez",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-transform-arrow-functions": "^7.8.3",
-    "@babel/preset-env": "^7.9.6",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.5.3",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "html-webpack-template": "^6.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "resolve-url-loader": "^3.1.1",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "moment": "^2.26.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-star-ratings": "^2.3.0",
+    "redux": "^4.0.5",
+    "redux-localstorage-simple": "^2.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
