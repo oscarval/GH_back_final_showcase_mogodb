@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "GeeksHubs Backend Practice Final - Dynamic product showcase with CRUD connect it to mongodb",
   "private": true,
-  "homepage": "https://github.com/oscarval/GH_back_final_showcase_mogodb#readme",
   "keywords": [],
   "author": "Alexis Valdez",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oscarval/GH_back_final_showcase_mogodb"
+    "url": "git+https://github.com/oscarval/GH_back_final_showcase_mongodb"
   },
   "bugs": {
-    "url": "https://github.com/oscarval/GH_back_final_showcase_mogodb/issues"
+    "url": "https://github.com/oscarval/GH_back_final_showcase_mongodb/issues"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
