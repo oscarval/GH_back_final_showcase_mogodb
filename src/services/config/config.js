@@ -13,10 +13,12 @@ const Config = {
       LOADING: "LOADING",
       REGISTER: "REGISTER",
       LOGIN: "LOGIN",
+      LOGOUT: "LOGOUT",
       SET_TOKEN: "SET_TOKEN",
       GET_ALL_PRODUCTS: "GET_ALL_PRODUCTS",
       GET_ALL_CART: "GET_ALL_CART",
       UPDATE_CART: "UPDATE_CART",
+      RESET: "RESET",
     },
   },
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import ApiRequest from "../../services/api/Api-request";
+import Config from "../../services/config/config";
 import "./Register.scss";
 // bootstrap
 import Form from "react-bootstrap/Form";
@@ -9,8 +10,14 @@ import Button from "react-bootstrap/Button";
 const Register = (props) => {
   // navigate to login when register ok
   useEffect(() => {
-    if (props.state.Register && props.state.Register.code === 0) {
-      props.history.push("/login");
+    if (props.state.Register && props.state.Register !== -1) {
+      if (props.state.Register.code === 0) {
+        props.history.push("/login");
+      } else {
+        setValidated(false);
+        alert(props.state.Register.message);
+        props.clear();
+      }
     }
   });
 
@@ -32,9 +39,7 @@ const Register = (props) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
-    if (form.checkValidity() === false) {
-      setValidated(false);
-    } else {
+    if (form.checkValidity() === true) {
       setValidated(true);
       props.register(values);
     }
@@ -94,7 +99,6 @@ const Register = (props) => {
               placeholder='Enter password'
               autoComplete='off'
               required
-              minLength='6'
             />
           </Form.Group>
 
@@ -112,6 +116,9 @@ const mapStateToProps = (state) => ({ state: state });
 const mapDispacthToProps = (dispatch) => ({
   register: (userData) => {
     ApiRequest.Users.Register(userData)(dispatch);
+  },
+  clear: () => {
+    ApiRequest.Clear(Config.ApiRequest.actionsTypes.REGISTER)(dispatch);
   },
 });
 

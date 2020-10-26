@@ -44,6 +44,22 @@ const UserController = {
       res.send(Utils.responseKO());
     }
   },
+  async logout(req, res) {
+    try {
+      const userid = req.decoded._id;
+      const user = await User.findById(userid);
+      if (!user) {
+        res.status(204);
+        res.send(Utils.responseKO(null, `Doc no exists by id: ${userid}`));
+      }
+      await user.removeAuthToken();
+      const resp = Utils.responseOK(true);
+      res.send(resp);
+    } catch (error) {
+      console.error(error);
+      res.send(Utils.responseKO());
+    }
+  },
 };
 
 module.exports = UserController;

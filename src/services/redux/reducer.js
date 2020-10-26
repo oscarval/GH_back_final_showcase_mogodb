@@ -50,6 +50,18 @@ const reducer = (state = initialErrorsState, { type, payload }) => {
         ...state,
         loading: true,
       };
+    case Config.ApiRequest.actionsTypes.LOGOUT:
+      return {
+        ...state,
+        Logout: payload.response,
+        loading: payload.response || payload.response === -1 ? false : true,
+      };
+    case Config.ApiRequest.actionsTypes.RESET:
+      return {
+        loading: false,
+        token: null,
+        tokenDate: 0,
+      };
     default:
       return state;
   }

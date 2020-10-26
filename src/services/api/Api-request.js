@@ -73,6 +73,34 @@ const ApiRequest = {
         }
       };
     },
+    Logout: () => {
+      return async (dispatch) => {
+        setLoading(dispatch);
+        try {
+          const apiResponse = await axios
+            .post(
+              `${Config.ApiRequest.request.baseURL}/users/logout`,
+              null,
+              getOptions()
+            )
+            .then((res) => res.data);
+          dispatch({
+            type: Config.ApiRequest.actionsTypes.LOGOUT,
+            payload: {
+              response: apiResponse,
+            },
+          });
+          if (apiResponse.code === 0) {
+            setHeaders("access-token", "");
+          }
+        } catch (err) {
+          dispatch({
+            type: Config.ApiRequest.actionsTypes.LOGOUT,
+            payload: { response: err },
+          });
+        }
+      };
+    },
   },
   Products: {
     GetAll: () => {

@@ -69,24 +69,11 @@ UserSchema.methods.generateAuthToken = function () {
     expiresIn: "24h",
   });
 
-  this.update({
-    $push: {
-      tokens: token,
-    },
-  });
-
   return token;
 };
 
 UserSchema.methods.removeAuthToken = function (token) {
-  const user = this;
-  this.update({
-    $pull: {
-      tokens: token,
-    },
-  });
-
-  return true;
+  // nothing
 };
 
 const User = mongoose.model("User", UserSchema);
